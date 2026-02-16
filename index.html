@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>1Link — Bookmark Collections</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <main class="app-shell">
+      <header class="hero card">
+        <div>
+          <p class="eyebrow">PWA • local-first • no-login</p>
+          <h1>1Link Collections</h1>
+          <p class="subtitle">
+            Organize links into beautiful collections and export them as a shareable HTML page.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button id="installBtn" class="btn ghost hidden">Install App</button>
+          <button id="newCollectionBtn" class="btn">+ New Collection</button>
+        </div>
+      </header>
+
+      <section class="layout-grid">
+        <aside class="panel card">
+          <div class="panel-header">
+            <h2>Collections</h2>
+            <span id="collectionCount" class="chip">0</span>
+          </div>
+          <div id="collectionList" class="collection-list"></div>
+        </aside>
+
+        <section class="panel card">
+          <div class="panel-header">
+            <h2 id="activeCollectionTitle">Choose a collection</h2>
+            <div class="actions-row">
+              <button id="renameCollectionBtn" class="btn ghost hidden">Rename</button>
+              <button id="deleteCollectionBtn" class="btn danger ghost hidden">Delete</button>
+              <button id="exportCollectionBtn" class="btn hidden">Export HTML</button>
+            </div>
+          </div>
+
+          <form id="addLinkForm" class="link-form hidden">
+            <label>
+              Link URL
+              <input id="linkUrl" name="url" type="url" placeholder="https://example.com" required />
+            </label>
+            <label>
+              Custom title (optional)
+              <input id="linkTitle" name="title" type="text" placeholder="Optional" />
+            </label>
+            <button class="btn" type="submit">Add Link</button>
+          </form>
+
+          <div id="emptyState" class="empty-state">
+            <p>Create your first collection to start adding links.</p>
+          </div>
+          <div id="linkGrid" class="link-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="collectionItemTpl">
+      <button class="collection-item" type="button">
+        <strong class="collection-name"></strong>
+        <span class="collection-meta"></span>
+      </button>
+    </template>
+
+    <template id="linkCardTpl">
+      <a class="link-card" target="_blank" rel="noopener noreferrer">
+        <img class="preview-image" alt="Link preview" />
+        <div class="preview-fallback"></div>
+        <div class="link-content">
+          <h3 class="link-title"></h3>
+          <p class="link-url"></p>
+          <small class="link-note"></small>
+        </div>
+      </a>
+    </template>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
